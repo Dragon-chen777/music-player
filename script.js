@@ -6,8 +6,11 @@ const nextBtn = document.getElementById("next")
 const audio = document.getElementById("audio")
 const progress = document.getElementById("progress")
 const progressContainer = document.getElementById("progress-container")
+const progressText = document.getElementById("progressText")
+const durationText = document.getElementById("durationText")
 const title = document.getElementById("title")
 const musicCover = document.getElementById("music-cover")
+
 
 // 音乐信息
 const songs = ["打上花火", "Mojito", "Super_Star", "离人"]
@@ -30,6 +33,7 @@ function playSong() {
     playBtn.querySelector('i.fas').classList.add('fa-pause')
 
     audio.play()
+    
 }
 
 // 停止播放
@@ -78,8 +82,13 @@ function updateProgress(e) {
     //     currentTime:0  // 当前播放时间
     // }
     const progressPercent = (currentTime / duration) * 100
+    // console.log(currentTime, duration)
     // 进度条
     progress.style.width = `${progressPercent}%`
+
+    // 显示播放进度的时间
+    progressText.innerHTML = convertToTime(currentTime)
+
 }
 // 设置进度条
 function setProgress(e) {
@@ -93,6 +102,22 @@ function setProgress(e) {
 
     // audio.currentTime: 音频播放位置
     audio.currentTime = (clickX / width) * duration
+}
+// 转为标准的时间格式
+function convertToTime(time) {
+    // 分钟
+    var minute = time / 60;
+    var minutes = parseInt(minute);
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    // 秒
+    var second = time % 60;
+    var seconds = Math.round(second);
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    return `${minutes}` + ":" + `${seconds}`
 }
 // 事件监听
 // 1.播放歌曲
@@ -112,9 +137,19 @@ prevBtn.onclick = prevSong
 nextBtn.onclick = nextSong
 
 // 3.播放器进度条相关
-// 3.1 设置播放进度
+// 3.1 加载完毕允许播放时获取歌曲的总时长
+audio.oncanplay = function(){
+    durationText.innerHTML = convertToTime(audio.duration)
+}
+// 3.2 设置播放进度
 progressContainer.onclick = setProgress
-// 3.2 进度条更新
+// 3.3 进度条更新
 audio.ontimeupdate = updateProgress
-// 3.3 歌曲结束后自动下一首
+// 3.4 歌曲结束后自动下一首
+// 3.4.1 更新歌曲细节和自动播放
 audio.onended = nextSong
+// 3.4.2 切换歌曲后，触发总时长发生的事件，改变总时长显示
+audio.ondurationchange = function(){
+    var duration = audio.duration
+    durationText.innerHTML = convertToTime(duration)
+}
