@@ -1,5 +1,5 @@
 # 0.传送门
-https://dragon-chen777.github.io/Music-player/
+https://music-player-three-delta.vercel.app/
 
 # 1. 最原始版本
 位于 `musicPlayer-js` 目录下
