@@ -22,20 +22,7 @@ jobs:
         run: npm run build
 
       - name: 部署
-        uses: JamesIves/github-pages-deploy-action@v3
-        with:
-          branch: build
-          folder: out
-          clean: true
-      # - name: Deploy to Production
-      #   run: |
-      #     # 这里写部署脚本，比如使用 FTP、SSH、或者其他自动化部署工具
-      #     # 示例：使用 SSH 部署到服务器
-      #     ssh user@your-server 'cd /path/to/your/app && git pull && npm install && npm run build'
-
-      # # 可选：如果需要通知部署结果，可以添加通知步骤
-      # # - name: Notify Deployment Status
-      # #   run: echo "Deployment completed successfully"
+      run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --project ${{ secrets.VERCEL_PROJECT_ID }}
 
 # workflow: jobs -> steps -> actions
 # jobs.<job_id>: name 任务名称, needs 依赖顺序， runs-on 运行所需虚拟机环境， steps 运行步骤
