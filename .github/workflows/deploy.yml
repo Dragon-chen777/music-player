@@ -1,29 +1,28 @@
-# workflow名称
-name: Deploy to Production  
+name: Deploy Next.js to Vercel
 
-# 触发workflow条件
 on:
   push:
     branches:
-      - build  # 触发部署的分支，可以根据需要修改
+      - build  # 监听 main 分支的推送操作
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 检查
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: 安装依赖
-        run: npm install
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # 使用 Node.js 14 版本
 
-      - name: 构建next应用
-        run: npm run build
+    - name: Install dependencies
+      run: npm install
 
-      - name: 部署
+    - name: Build project
+      run: npm run build
+
+    - name: Deploy to Vercel
       run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm --project ${{ secrets.VERCEL_PROJECT_ID }}
-
-# workflow: jobs -> steps -> actions
-# jobs.<job_id>: name 任务名称, needs 依赖顺序， runs-on 运行所需虚拟机环境， steps 运行步骤
-# steps: name 步骤名称，run 运行命令，env 环境变量
