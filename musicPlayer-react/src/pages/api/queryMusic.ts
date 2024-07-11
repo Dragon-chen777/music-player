@@ -23,7 +23,7 @@ const musicList = [
 ]
 let curIndex = 0
 
-export default function handler(req, res) {
+export default function handler(req: any, res: any) {
   const params = JSON.parse(req.body)
   if (params.cmd === 'pre') {
     curIndex--

@@ -1,0 +1,31 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - build  # 触发部署的分支，可以根据需要修改
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Next.js Application
+        run: npm run build
+
+      # - name: Deploy to Production
+      #   run: |
+      #     # 这里写部署脚本，比如使用 FTP、SSH、或者其他自动化部署工具
+      #     # 示例：使用 SSH 部署到服务器
+      #     ssh user@your-server 'cd /path/to/your/app && git pull && npm install && npm run build'
+
+      # # 可选：如果需要通知部署结果，可以添加通知步骤
+      # # - name: Notify Deployment Status
+      # #   run: echo "Deployment completed successfully"
+

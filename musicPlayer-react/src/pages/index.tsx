@@ -1,7 +1,7 @@
 import styles from '@/styles/Index.module.less';
 import '@/styles/globals.module.less'
 import Head from 'next/head';
-import MusicPlayer from './musicPlayer';
+import MusicPlayer from '../components/musicPlayer';
 
 const App = () => {
   return (

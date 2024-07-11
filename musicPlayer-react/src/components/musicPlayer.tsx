@@ -6,11 +6,14 @@ const MusicPlayer = () => {
   const [curMusic, setCurMusic] = useState({})
   const [curProgress, setCurProgress] = useState('0')
   const audio = useRef(null)
+
+  // @ts-ignore
   const playSong = () => {
     isPlay ? audio.current.pause() : audio.current.play()
     setIsPlay(!isPlay)
   }
 
+  // @ts-ignore
   const queryMusic = async (cmd: 'pre' | 'next' | 'cur') => {
     let res = await fetch('/api/queryMusic', {
       method: 'POST',
@@ -35,6 +38,7 @@ const MusicPlayer = () => {
     const progressPercent = (currentTime / duration) * 100 // 当前播放时长 / 音频总时长
     setCurProgress(`${progressPercent}%`)
   }
+  // @ts-ignore
   const setProgress = (e) => {
     const width = document.getElementById('progressContainer').clientWidth
     const clickX = e.nativeEvent.offsetX
