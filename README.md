@@ -19,9 +19,18 @@ npm i
 npm run dev
 ```
 
-# 3. Vue版本 todo
-哪个小伙伴感兴趣可以提pr，期待你们的作品
+# 3. Vue版本
+位于 `musicPlayer-vue` 目录下
 
+使用 `Vue2 (vite) + Less`
+
+卧槽  一年多没写vue了  再见已是陌生人
+
+## 启动方式
+```cmd
+npm i
+npm run dev
+```
 
 # 4. 最后
 有疑问欢迎qq群讨论：817826310

@@ -1,0 +1,23 @@
+{
+  "name": "musicplayer-vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "repository": "https://github.com/Dragon-chen777/Music-player.git",
+  "dependencies": {
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
+    "vite": "^5.3.3",
+    "vite-plugin-vue2": "^2.0.3",
+    "vue": "^2.7.16",
+    "vue-template-compiler": "^2.7.16"
+  }
+}
