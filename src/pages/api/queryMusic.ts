@@ -30,7 +30,7 @@ export default function handler(req: any, res: any) {
     if (curIndex < 0) curIndex = musicList.length - 1
   }
   else if (params.cmd === 'next') {
-    curIndex = ++curIndex % (musicList.length - 1)
+    curIndex = ++curIndex % musicList.length
   }
 
   res.status(200).json(musicList[curIndex]);
