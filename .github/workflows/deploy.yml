@@ -1,5 +1,7 @@
-name: Deploy to Production
+# workflow名称
+name: Deploy to Production  
 
+# 触发workflow条件
 on:
   push:
     branches:
@@ -20,9 +22,9 @@ jobs:
         run: npm run build
 
       - name: 部署
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v3
         with:
-          branch: gh-pages
+          branch: build
           folder: out
           clean: true
       # - name: Deploy to Production
@@ -35,3 +37,6 @@ jobs:
       # # - name: Notify Deployment Status
       # #   run: echo "Deployment completed successfully"
 
+# workflow: jobs -> steps -> actions
+# jobs.<job_id>: name 任务名称, needs 依赖顺序， runs-on 运行所需虚拟机环境， steps 运行步骤
+# steps: name 步骤名称，run 运行命令，env 环境变量
