@@ -6,19 +6,25 @@ on:
       - build  # 触发部署的分支，可以根据需要修改
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: 检查
         uses: actions/checkout@v2
 
-      - name: Install Dependencies
+      - name: 安装依赖
         run: npm install
 
-      - name: Build Next.js Application
+      - name: 构建next应用
         run: npm run build
 
+      - name: 部署
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: out
+          clean: true
       # - name: Deploy to Production
       #   run: |
       #     # 这里写部署脚本，比如使用 FTP、SSH、或者其他自动化部署工具
